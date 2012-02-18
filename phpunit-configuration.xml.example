@@ -1,0 +1,24 @@
+<phpunit>
+  <listeners>
+    <listener class="PHPUnit_Extensions_TicketListener_Redmine" 
+              file="classes/pear/PHPUnit/Extensions/TicketListener/Redmine.php">
+      <arguments>
+        <string>http://redmine.samo.ru</string>
+        <string>63d802d3d60069040f8fb0ea08b07d66</string>
+        <array>
+    	    <element key="0">
+        	<integer>5</integer>
+    	    </element>
+    	    <element key="1">
+        	<integer>6</integer>
+    	    </element>
+    	    <element key="2">
+        	<integer>10</integer>
+    	    </element>
+    	</array>
+        <integer>2</integer>
+        <integer>2</integer>
+      </arguments>
+    </listener>
+  </listeners>
+</phpunit>

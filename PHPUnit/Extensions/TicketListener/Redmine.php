@@ -76,13 +76,17 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
             $status = 'invalid_ticket_id';
         } else {
 	    $issue = $this->runRequest('/issues/'.$issueId.'.xml');
-	    $status_id = (int)$issue->status['id'];
-	    if (in_array($status_id,$this->closedStatuses)) {
-		$status = 'closed';
-	    } elseif ($status_id == $this->openStatusId) {
-		$status = 'new';
-	    } else {
+	    if ($issue) {
+		$status_id = (int)$issue->status['id'];
+		if (in_array($status_id,$this->closedStatuses)) {
+		    $status = 'closed';
+		} elseif ($status_id == $this->openStatusId) {
+		    $status = 'new';
+		} else {
 		    $status = (string)$issue->status['name'];
+		}
+	    } else {
+		$status = 'not found';
 	    }
 	}
 	return array('status' => $status);
@@ -92,16 +96,20 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
 	$statusId = ($status == 'closed') ? reset($this->closedStatuses) : (($status == 'reopened') ? $this->reopenStatusId : null);
 	if ($statusId) {
 	    $issue = $this->runRequest('/issues/'.$issueId.'.xml');
-	    $status_id = (int)$issue->status['id'];
-	    if ($statusId != $status_id) {
-	       $xml = new SimpleXMLElement('<?xml version="1.0"?><issue></issue>');
-    	       $xml->addChild('id', $issueId);
-    	       $xml->addChild('status_id', $statusId); 
-    	       $xml->addChild('notes', htmlentities($note,ENT_COMPAT ,'UTF-8',false));
-	       $this->runRequest('/issues/'.$issueId.'.xml', 'PUT', $xml->asXML());
-               printf("\nUpdating Redmine issue #%d, status: %s\n", $issueId, $status);
+	    if ($issue) {
+		$status_id = (int)$issue->status['id'];
+		if ($statusId != $status_id) {
+	    	    $xml = new SimpleXMLElement('<?xml version="1.0"?><issue></issue>');
+    	    	    $xml->addChild('id', $issueId);
+    	    	    $xml->addChild('status_id', $statusId); 
+    	    	    $xml->addChild('notes', htmlentities($note,ENT_COMPAT ,'UTF-8',false));
+	    	    $this->runRequest('/issues/'.$issueId.'.xml', 'PUT', $xml->asXML());
+            	    printf("\nUpdating Redmine issue #%d, status: %s\n", $issueId, $status);
+		} else {
+            	    printf("\nRedmine issue #%d, already has status: %s\n", $issueId, $status);
+		}
 	    } else {
-               printf("\nRedmine issue #%d, already has status: %s\n", $issueId, $status);
+		return false;
 	    }
 	    return true;
 	}
@@ -155,7 +163,6 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
  
 	    curl_close($this->curl); 
 	} catch (Exception $e) {
-	    //echo 'Exception: ',  $e->getMessage(), "\n";
 	    return false;
 	}
  

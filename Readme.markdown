@@ -28,3 +28,11 @@ Example configuration:
 	    </listener>
 	</listeners>
     </phpunit>
+
+Example usage:
+---------------------------------
+
+    $phpunit --configuration phpunit-configuration.xml ExampleTest.php
+
+
+

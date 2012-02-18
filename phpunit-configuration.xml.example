@@ -18,6 +18,7 @@
     	</array>
         <integer>2</integer>
         <integer>2</integer>
+        <boolean>true</boolean>
       </arguments>
     </listener>
   </listeners>

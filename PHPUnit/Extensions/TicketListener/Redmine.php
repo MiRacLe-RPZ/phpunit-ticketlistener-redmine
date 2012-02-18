@@ -41,6 +41,7 @@
  */
 require_once('PHPUnit/Extensions/TicketListener.php');
 
+
 class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_TicketListener {
     private $url;
     private $apikey;
@@ -48,7 +49,16 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
     private $closedStatuses = array(5);
     private $openStatusId = 2;
     private $reopenStatusId = 2;
-    public function __construct($url, $apikey, $closedStatuses = null, $openStatusId = null, $reopenStatusId = null) {
+    private $printTicketStateChanges;
+    /**
+     * @param string $url Redmine location
+     * @param string $apikey Redmine API key
+     * @param array $closedStatuses ids of issue's closed statuses
+     * @param integer $openStatusId
+     * @param integer $reopenStatusId
+     * @param bool $printTicketStateChanges to display changes or not
+     */
+    public function __construct($url, $apikey, $closedStatuses = null, $openStatusId = null, $reopenStatusId = null, $printTicketStateChanges = false) {
         if (!extension_loaded('curl')) {
             throw new RuntimeException('The dependent curl extension is not available');
         }
@@ -63,6 +73,7 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
 	if (!empty($reopenStatusId)) {
 	    $this->reopenStatusId = ($tmp = intval($reopenStatusId)) ? $tmp : $this->reopenStatusId;
 	}
+	$this->printTicketStateChanges = (bool)$printTicketStateChanges;
     }
 
     /**
@@ -91,7 +102,12 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
 	}
 	return array('status' => $status);
     }
-
+    /**
+     * @param integer $issueId
+     * @param string $status
+     * @param string $note
+     * @param string $resolution
+     */
      protected function updateTicket($issueId, $status, $note, $resolution) {
 	$statusId = ($status == 'closed') ? reset($this->closedStatuses) : (($status == 'reopened') ? $this->reopenStatusId : null);
 	if ($statusId) {
@@ -104,9 +120,13 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
     	    	    $xml->addChild('status_id', $statusId); 
     	    	    $xml->addChild('notes', htmlentities($note,ENT_COMPAT ,'UTF-8',false));
 	    	    $this->runRequest('/issues/'.$issueId.'.xml', 'PUT', $xml->asXML());
-            	    printf("\nUpdating Redmine issue #%d, status: %s\n", $issueId, $status);
+		    if ($this->printTicketStateChanges) {
+            		printf("\nUpdating Redmine issue #%d, status: %s\n", $issueId, $status);
+		    }
 		} else {
-            	    printf("\nRedmine issue #%d, already has status: %s\n", $issueId, $status);
+		    if ($this->printTicketStateChanges) {
+            		printf("\nRedmine issue #%d, already has status: %s\n", $issueId, $status);
+		    }
 		}
 	    } else {
 		return false;
@@ -115,7 +135,11 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
 	}
 	return false;
      }
-
+    /**
+     * @param string $restUrl
+     * @param string $method
+     * @param string $data
+     */    
     private function runRequest($restUrl, $method = 'GET', $data = ''){
         $method = strtolower($method);
  
@@ -163,6 +187,7 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
  
 	    curl_close($this->curl); 
 	} catch (Exception $e) {
+	    //echo 'Exception: ',  $e->getMessage(), "\n";
 	    return false;
 	}
  

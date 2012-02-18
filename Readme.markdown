@@ -24,6 +24,7 @@ Example configuration:
     		    </array>
     		    <integer>2</integer><!-- id of issue's status 'open', default 2 - assigned -->
     		    <integer>2</integer><!-- id of issue's status 'reopen', default 2 - assigned  -->
+    		    <boolean>true</boolean><!-- print issue status changes  -->
     		</arguments>
 	    </listener>
 	</listeners>

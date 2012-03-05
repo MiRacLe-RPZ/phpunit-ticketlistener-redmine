@@ -3,7 +3,7 @@
     <listener class="PHPUnit_Extensions_TicketListener_Redmine" 
               file="classes/pear/PHPUnit/Extensions/TicketListener/Redmine.php">
       <arguments>
-        <string>http://redmine.samo.ru</string>
+        <string>http://redmine.example.org</string>
         <string>63d802d3d60069040f8fb0ea08b07d66</string>
         <array>
     	    <element key="0">

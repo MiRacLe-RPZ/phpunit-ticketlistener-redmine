@@ -9,7 +9,7 @@ Installation:
 ---------------------------------
 
     $pear channel-discovery pear.rpz.name
-    $pear install rpz/PHPUnit_TestListener_Redmine
+    $pear install rpz/PHPUnit_TicketListener_Redmine
 
 
 Example configuration:

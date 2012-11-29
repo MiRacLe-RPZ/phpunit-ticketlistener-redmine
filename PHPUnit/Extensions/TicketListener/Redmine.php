@@ -2,7 +2,7 @@
 /**
  * PHPUnit
  *
- * Copyright (c) 2002-2010, Sebastian Bergmann <sb@sebastian-bergmann.de>.
+ * Copyright (c) 2012, MiRacLe <miracle@rpz.name>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,8 +36,10 @@
  *
  * @category   Testing
  * @package    PHPUnit
+ * @subpackage Extensions_TicketListener
  * @author     MiRacLe.RPZ <miracle@rpz.name>
- * @version    SVN: $Id$
+ * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
+ * @version    Release: @package_version@
  */
 require_once('PHPUnit/Extensions/TicketListener.php');
 

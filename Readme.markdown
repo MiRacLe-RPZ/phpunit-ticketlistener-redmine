@@ -5,12 +5,19 @@ Closing and reopening Google Code issues via PHPUnit tests.
 
 Inspired by Raphael Stolt's article [Closing and reopening GitHub issues via PHPUnit tests](http://raphaelstolt.blogspot.com/2010/01/closing-and-reopening-github-issues-via.html). Read this article about how to use PHPUnit's ticket listeners.
 
+Installation:
+---------------------------------
+
+    $pear channel-discovery pear.rpz.name
+    $pear install rpz/PHPUnit_TestListener_Redmine
+
+
 Example configuration:
 ---------------------------------
     <phpunit>
 	<listeners>
 	    <listener class="PHPUnit_Extensions_TicketListener_Redmine" 
-                 file="classes/pear/PHPUnit/Extensions/TicketListener/Redmine.php">
+                 file="PHPUnit/Extensions/TicketListener/Redmine.php">
     		<arguments>
     		    <string>http://redmine.example.org</string><!-- redmine location -->
     		    <string>63d802d3d60069040f8fb0ea08b07d66</string><!-- your api-key for redmine -->
@@ -36,4 +43,9 @@ Example usage:
     $phpunit --configuration phpunit-configuration.xml ExampleTest.php
 
 
+Installation:
+---------------------------------
 
+    $pear channel-discovery pear.rpz.name
+    $pear install rpz/PHPUnit_TestListener_Redmine
+    

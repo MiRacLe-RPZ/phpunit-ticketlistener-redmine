@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+  <name>PHPUnit_TicketListener_Redmine</name>
+ <channel>pear.rpz.name</channel>
+ <summary>A ticket listener for PHPUnit that interacts with the Redmine issue API.</summary>
+ <description>A ticket listener for PHPUnit that interacts with the Redmine issue API.</description>
+ <lead>
+  <name>MiRacLe</name>
+  <user>MiRacLe</user>
+  <email>miracle@rpz.name</email>
+  <active>yes</active>
+ </lead>
+ <date>2012-03-05</date>
+ <version>
+  <release>1.0.0</release>
+  <api>1.0.0</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license>The BSD 3-Clause License</license>
+ <notes>https://github.com/MiRacLe-RPZ/phpunit-ticketlistener-redmine/blob/master/Readme.markdown</notes>
+ <contents>
+  <dir name="/">
+   <dir name="PHPUnit">
+    <dir name="Extensions">
+     <dir name="TicketListener">
+      <file name="Redmine.php" role="php">
+       <tasks:replace from="@package_version@" to="version" type="package-info" />
+      </file>
+     </dir>
+    </dir>
+   </dir>
+   <file name="Readme.markdown" role="doc"/>
+   <file name="phpunit-configuration.xml.example" role="doc"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.7</min>
+   </php>
+   <pearinstaller>
+    <min>1.9.4</min>
+   </pearinstaller>
+   <package>
+    <name>PHPUnit</name>
+    <channel>pear.phpunit.de</channel>
+    <min>3.6.0RC1</min>
+   </package>
+   <extension>
+    <name>curl</name>
+   </extension>
+   <extension>
+    <name>simpexml</name>
+   </extension>
+  </required>
+ </dependencies>
+ <phprelease/>
+</package>

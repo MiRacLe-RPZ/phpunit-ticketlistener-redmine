@@ -2,7 +2,7 @@
 <package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
   <name>PHPUnit_TicketListener_Redmine</name>
  <channel>pear.rpz.name</channel>
- <summary>A ticket listener for PHPUnit that interacts with the Redmine issue API.</summary>
+ <summary>Closing and reopening Redmine issues via PHPUnit tests.</summary>
  <description>A ticket listener for PHPUnit that interacts with the Redmine issue API.</description>
  <lead>
   <name>MiRacLe</name>
@@ -10,9 +10,9 @@
   <email>miracle@rpz.name</email>
   <active>yes</active>
  </lead>
- <date>2012-03-05</date>
+ <date>2012-12-03</date>
  <version>
-  <release>1.0.0</release>
+  <release>1.0.1</release>
   <api>1.0.0</api>
  </version>
  <stability>
@@ -20,7 +20,7 @@
   <api>stable</api>
  </stability>
  <license>The BSD 3-Clause License</license>
- <notes>https://github.com/MiRacLe-RPZ/phpunit-ticketlistener-redmine/blob/master/Readme.markdown</notes>
+ <notes>Inspired by Raphael Stolt's article Closing and reopening GitHub issues via PHPUnit tests (http://raphaelstolt.blogspot.com/2010/01/closing-and-reopening-github-issues-via.html). Read this article about how to use PHPUnit's ticket listeners.</notes>
  <contents>
   <dir name="/">
    <dir name="PHPUnit">
@@ -53,9 +53,39 @@
     <name>curl</name>
    </extension>
    <extension>
-    <name>simpexml</name>
+    <name>simplexml</name>
    </extension>
   </required>
  </dependencies>
  <phprelease/>
+ <changelog>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-03-05</date>
+    <license>The BSD 3-Clause License</license>
+  </release> 
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2012-12-03</date>
+    <license>The BSD 3-Clause License</license>
+   <notes>
+    * Fixed installation via pear
+    * Correct some typos
+   </notes>
+  </release> 
+ </changelog>
 </package>

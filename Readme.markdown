@@ -1,7 +1,7 @@
 PHPUnit_TicketListener_Redmine
 ===============================
 
-Closing and reopening Google Code issues via PHPUnit tests.
+Closing and reopening Redmine issues via PHPUnit tests.
 
 Inspired by Raphael Stolt's article [Closing and reopening GitHub issues via PHPUnit tests](http://raphaelstolt.blogspot.com/2010/01/closing-and-reopening-github-issues-via.html). Read this article about how to use PHPUnit's ticket listeners.
 

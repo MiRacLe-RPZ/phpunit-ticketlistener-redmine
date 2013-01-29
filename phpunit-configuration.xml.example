@@ -16,7 +16,14 @@
         	<integer>10</integer>
     	    </element>
     	</array>
-        <integer>2</integer>
+        <array>
+    	    <element key="0">
+        	<integer>1</integer>
+    	    </element>
+    	    <element key="1">
+        	<integer>2</integer>
+    	    </element>
+    	</array>
         <integer>2</integer>
         <boolean>true</boolean>
       </arguments>

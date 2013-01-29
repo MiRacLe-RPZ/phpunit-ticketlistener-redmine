@@ -10,9 +10,9 @@
   <email>miracle@rpz.name</email>
   <active>yes</active>
  </lead>
- <date>2012-12-03</date>
+ <date>2013-01-29</date>
  <version>
-  <release>1.0.1</release>
+  <release>1.0.2</release>
   <api>1.0.0</api>
  </version>
  <stability>
@@ -87,5 +87,22 @@
     * Correct some typos
    </notes>
   </release> 
+  <release>
+   <version>
+    <release>1.0.2</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2013-01-29</date>
+    <license>The BSD 3-Clause License</license>
+   <notes>
+    * Added posibility for setup several "opened" statuses of tickets (ex. new, open, assigned etc)
+   </notes>
+  </release> 
+
+
  </changelog>
 </package>

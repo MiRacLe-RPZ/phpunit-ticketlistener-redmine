@@ -29,7 +29,14 @@ Example configuration:
             		    <integer>6</integer><!-- redmine's id of status that also closes issue (for example - canceled) -->
         		</element>
     		    </array>
-    		    <integer>2</integer><!-- id of issue's status 'open', default 2 - assigned -->
+    		    <array>
+        		<element key="0">
+            		    <integer>1</integer><!-- id of issue's status 'open' -->
+        		</element>
+        		<element key="1">
+            		    <integer>2</integer><!-- id of issue's status 'open', default 2 - assigned -->
+        		</element>
+    		    </array>
     		    <integer>2</integer><!-- id of issue's status 'reopen', default 2 - assigned  -->
     		    <boolean>true</boolean><!-- print issue status changes  -->
     		</arguments>

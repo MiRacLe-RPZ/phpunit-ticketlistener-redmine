@@ -2,7 +2,7 @@
 /**
  * PHPUnit
  *
- * Copyright (c) 2012, MiRacLe <miracle@rpz.name>.
+ * Copyright (c) 2012-2013, MiRacLe <miracle@rpz.name>.
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
     private $curl;
     private $test;
     private $closedStatuses = array(5);
-    private $openStatusId = 2;
+    private $openStatusId = array(1,2);
     private $reopenStatusId = 2;
     private $printTicketStateChanges;
 
@@ -72,7 +72,10 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
             $this->closedStatuses = $closedStatuses;
         }
         if (!empty($openStatusId)) {
-            $this->openStatusId = ($tmp = intval($openStatusId)) ? $tmp : $this->openStatusId;
+            if (!is_array($openStatusId)) {
+                $openStatusId = array($openStatusId);
+            }
+            $this->openStatusId = $openStatusId;
         }
         if (!empty($reopenStatusId)) {
             $this->reopenStatusId = ($tmp = intval($reopenStatusId)) ? $tmp : $this->reopenStatusId;
@@ -95,7 +98,7 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
                 $status_id = (int)$issue->status['id'];
                 if (in_array($status_id, $this->closedStatuses)) {
                     $status = 'closed';
-                } elseif ($status_id == $this->openStatusId) {
+                } elseif (in_array($status_id, $this->openStatusId)) {
                     $status = 'new';
                 } else {
                     $status = (string)$issue->status['name'];
@@ -122,7 +125,9 @@ class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_Ticke
                     $xml = new SimpleXMLElement('<?xml version="1.0"?><issue></issue>');
                     $xml->addChild('id', $issueId);
                     $xml->addChild('status_id', $statusId);
-                    $note .= PHP_EOL.'Failed test: '.$this->test->toString().PHP_EOL.'Message: '.$this->test->getStatusMessage();
+                    if (in_array($statusId,$this->openStatusId)) {
+                        $note .= PHP_EOL.'Failed test: '.$this->test->toString().PHP_EOL.'Message: '.$this->test->getStatusMessage();
+                    }
                     $xml->addChild('notes', htmlentities($note, ENT_COMPAT, 'UTF-8', false));
                     $this->runRequest('/issues/' . $issueId . '.xml', 'PUT', $xml->asXML());
                     if ($this->printTicketStateChanges) {

@@ -46,13 +46,27 @@ Example configuration:
 
 Example usage:
 ---------------------------------
+```php
+class ExampleTest extends PHPUnit_Framework_TestCase {
+    /**
+     * @ticket 6666
+     */
+    public function testExampleMethod() {
+        $this->assertTrue(true);
+    }
+}
+```
+
 
     $phpunit --configuration phpunit-configuration.xml ExampleTest.php
+    PHPUnit 3.5.2 by Sebastian Bergmann.
+
+    Updating Redmine issue #6666, status: closed
+    .
+
+    Time: 0 seconds, Memory: 3.50Mb
+
+    OK (1 test, 1 assertion)
 
 
-Installation:
----------------------------------
-
-    $pear channel-discovery pear.rpz.name
-    $pear install rpz/PHPUnit_TestListener_Redmine
     

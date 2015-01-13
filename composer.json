@@ -11,5 +11,6 @@
     "require": {
 	"phpunit/phpunit": ">=3.6",
 	"ext-curl": "*"
-    }
+    },
+    "target-dir": "phpunit/"
 }

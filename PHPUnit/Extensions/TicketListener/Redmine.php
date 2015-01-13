@@ -41,7 +41,9 @@
  * @license    http://www.opensource.org/licenses/BSD-3-Clause  The BSD 3-Clause License
  * @version    Release: @package_version@
  */
-require_once('PHPUnit/Extensions/TicketListener.php');
+if (!defined('PHPUNIT_COMPOSER_INSTALL')) {
+    require_once('PHPUnit/Extensions/TicketListener.php');
+}
 
 
 class PHPUnit_Extensions_TicketListener_Redmine extends PHPUnit_Extensions_TicketListener {

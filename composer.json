@@ -1,5 +1,5 @@
 {
-    "name": "rpz/phpunit-ticketlistener-redmine",
+    "name": "phpunit/ticketlistener-redmine",
     "description": "Closing and reopening Redmine issues via PHPUnit tests.",
     "license": "The BSD 3-Clause License",
     "authors": [
@@ -11,6 +11,5 @@
     "require": {
 	"phpunit/phpunit": ">=3.6",
 	"ext-curl": "*"
-    },
-    "target-dir": "phpunit/"
+    }
 }
